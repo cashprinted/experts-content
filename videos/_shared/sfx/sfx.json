@@ -1,0 +1,50 @@
+{
+ "impact": {
+  "hit": 0.065,
+  "dur": 1.6
+ },
+ "whoosh": {
+  "hit": 0.192,
+  "dur": 0.88
+ },
+ "whoosh_long": {
+  "hit": 0.255,
+  "dur": 0.88
+ },
+ "whoosh_hard": {
+  "hit": 0.211,
+  "dur": 0.88
+ },
+ "stamp": {
+  "hit": 0.106,
+  "dur": 0.68
+ },
+ "pop": {
+  "hit": 0.018,
+  "dur": 0.48
+ },
+ "swipe": {
+  "hit": 0.146,
+  "dur": 0.6
+ },
+ "tick": {
+  "hit": 0.048,
+  "dur": 0.48
+ },
+ "riser": {
+  "hit": 1.319,
+  "dur": 1.48
+ },
+ "chime": {
+  "hit": 0.019,
+  "dur": 1.6
+ },
+ "swoosh_up": {
+  "hit": 0.096,
+  "dur": 0.68
+ },
+ "paper": {
+  "hit": 0.479,
+  "dur": 0.8
+ }
+}

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="assets/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Archivo"; src: url("assets/fonts/archivo.woff2") format("woff2"); font-weight: 100 900; font-stretch: 62% 125%; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0F0F0F; }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0F0F0F; color: #F7F5F0; font-family: "Archivo", sans-serif; -webkit-font-smoothing: antialiased; }
+#glow { position: absolute; left: 90px; top: 380px; width: 900px; height: 900px; border-radius: 50%; background: radial-gradient(closest-side, rgba(194,162,76,0.16), rgba(194,162,76,0)); }
+#grain { position: absolute; inset: 0; background-image: url("assets/img/grain.png"); background-size: 512px 512px; opacity: 0.05; mix-blend-mode: screen; pointer-events: none; z-index: 40; }
+#vig { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 42%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%); z-index: 39; pointer-events: none; }
+.scene { position: absolute; left: 0; top: 110px; width: 1080px; height: 1920px; }
+.cam { position: absolute; inset: 0; transform-origin: 540px 700px; }
+.chk { fill: none; stroke: #0F0F0F; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.chk path { stroke-dasharray: 30; }
+#pcard { position: absolute; left: 150px; top: 380px; width: 780px; height: 480px; padding: 48px 52px; border-radius: 26px; background: linear-gradient(145deg, #1F1E1B, #121212); border: 2px solid rgba(194,162,76,0.7); box-shadow: 0 50px 100px rgba(0,0,0,0.7); display: flex; flex-direction: column; gap: 30px; }
+.pc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.pc-k { font-size: 22px; font-weight: 650; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(247,245,240,0.6); font-stretch: 112%; }
+.pc-t { margin-top: 10px; font-size: 44px; font-weight: 780; letter-spacing: 0.04em; font-stretch: 125%; color: #C2A24C; }
+.pc-ic { width: 76px; height: 76px; fill: none; stroke: #C2A24C; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.pc-row { display: flex; align-items: center; justify-content: space-between; font-size: 24px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(247,245,240,0.75); border-top: 1px solid rgba(247,245,240,0.14); padding-top: 22px; }
+.pc-row i { display: block; height: 14px; border-radius: 7px; background: rgba(247,245,240,0.2); }
+#okBadge { position: absolute; right: -44px; top: -44px; width: 132px; height: 132px; border-radius: 50%; background: #C2A24C; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 10px #0F0F0F; }
+#okBadge .chk { width: 74px; height: 74px; }
+#yLab { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-size: 34px; font-weight: 700; letter-spacing: 0.14em; font-stretch: 125%; color: #C2A24C; }
+#yWin { position: absolute; left: 140px; width: 800px; top: 430px; height: 280px; overflow: hidden; }
+.yr { height: 280px; line-height: 280px; text-align: center; font-size: 250px; font-weight: 650; font-stretch: 112%; letter-spacing: -0.01em; }
+#yQ { position: absolute; left: 770px; width: 220px; top: 410px; text-align: center; font-size: 320px; line-height: 320px; font-weight: 700; color: #C2A24C; }
+#rPanel { position: absolute; left: 170px; top: 400px; width: 740px; padding: 44px 48px; border-radius: 26px; background: #171717; border: 2px solid rgba(247,245,240,0.16); display: flex; flex-direction: column; gap: 34px; }
+.rp-h { font-size: 26px; font-weight: 700; letter-spacing: 0.14em; color: rgba(247,245,240,0.6); font-stretch: 125%; }
+.rp-row { display: flex; align-items: center; justify-content: space-between; font-size: 46px; font-weight: 650; }
+#tg { width: 148px; height: 76px; border-radius: 38px; background: #3A3833; padding: 6px; }
+#tgK { width: 64px; height: 64px; border-radius: 50%; background: #F7F5F0; }
+#rBadge { align-self: flex-start; padding: 12px 22px; border-radius: 10px; background: rgba(194,162,76,0.16); border: 2px solid #C2A24C; color: #C2A24C; font-size: 26px; font-weight: 800; letter-spacing: 0.1em; font-stretch: 125%; }
+.bill { position: absolute; left: 190px; width: 700px; height: 170px; padding: 0 44px; border-radius: 18px; background: #F2EFE8; color: #0F0F0F; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 30px 60px rgba(0,0,0,0.6); }
+#bill0 { top: 330px; } #bill1 { top: 530px; } #bill2 { top: 730px; }
+.b-k { font-size: 18px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6B665C; }
+.b-m { margin-top: 8px; font-size: 40px; font-weight: 800; font-stretch: 125%; }
+.bill i { display: block; width: 150px; height: 16px; border-radius: 8px; background: #D6D0C3; margin-right: 140px; }
+.paid { position: absolute; right: 30px; top: 34px; padding: 10px 18px; border: 5px solid #8A6F2B; border-radius: 10px; color: #8A6F2B; font-size: 40px; font-weight: 800; letter-spacing: 0.1em; font-stretch: 125%; transform: rotate(-10deg); }
+.doc { position: absolute; left: 260px; top: 260px; width: 560px; height: 700px; padding: 50px 46px; background: #F2EFE8; color: #0F0F0F; box-shadow: 0 40px 90px rgba(0,0,0,0.65); display: flex; flex-direction: column; gap: 30px; }
+.dt { font-size: 28px; font-weight: 750; letter-spacing: 0.1em; font-stretch: 125%; text-transform: uppercase; }
+.rule { height: 3px; background: #0F0F0F; }
+.row { display: flex; flex-direction: column; gap: 11px; }
+.lab { font-size: 17px; font-weight: 650; letter-spacing: 0.12em; text-transform: uppercase; color: #6B665C; font-stretch: 112%; }
+.doc .bar { height: 14px; border-radius: 7px; background: #D6D0C3; }
+.prem { display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #D6D0C3; padding-top: 22px; margin-top: auto; }
+.pv { display: flex; align-items: center; gap: 10px; font-size: 30px; font-weight: 750; }
+.badge { position: absolute; left: 340px; top: 250px; width: 400px; height: 190px; display: flex; align-items: center; justify-content: center; }
+.badge img { width: 400px; }
+#ring { position: absolute; left: 390px; top: 195px; width: 300px; height: 300px; border-radius: 50%; border: 3px solid #C2A24C; opacity: 0; }
+#scan { position: absolute; left: 130px; top: 300px; width: 600px; height: 6px; background: #C2A24C; box-shadow: 0 0 30px 8px rgba(194,162,76,0.55); }
+.rck { position: absolute; left: 676px; width: 56px; height: 56px; border-radius: 50%; background: #C2A24C; display: flex; align-items: center; justify-content: center; }
+.rck .chk { width: 32px; height: 32px; }
+#rck0 { top: 392px; } #rck1 { top: 482px; } #rck2 { top: 572px; }
+#saveTag { position: absolute; left: 520px; top: 760px; width: 500px; padding: 30px 34px; border-radius: 18px; background: #C2A24C; color: #0F0F0F; box-shadow: 0 30px 70px rgba(0,0,0,0.6); }
+.st-k { font-size: 24px; font-weight: 800; letter-spacing: 0.08em; font-stretch: 125%; }
+.st-v { margin-top: 14px; display: flex; align-items: center; gap: 12px; font-size: 54px; font-weight: 800; }
+.st-v i { display: block; width: 250px; height: 30px; border-radius: 15px; background: linear-gradient(90deg, rgba(15,15,15,0.25) 0%, rgba(15,15,15,0.55) 50%, rgba(15,15,15,0.25) 100%); background-size: 300px 30px; }
+.cv { position: absolute; left: 116px; display: flex; align-items: center; gap: 30px; font-size: 58px; font-weight: 760; font-stretch: 118%; letter-spacing: 0.01em; text-transform: uppercase; white-space: nowrap; }
+.cv .ic { width: 78px; height: 78px; flex: none; fill: none; stroke: #C2A24C; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+#cv0 { top: 360px; } #cv1 { top: 490px; } #cv2 { top: 620px; } #cv3 { top: 750px; } #cv4 { top: 880px; }
+#mGrid { position: absolute; left: 110px; top: 360px; width: 860px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.mt { height: 130px; border-radius: 14px; border: 2px solid rgba(194,162,76,0.55); background: rgba(247,245,240,0.05); display: flex; align-items: center; justify-content: center; font-size: 40px; font-weight: 750; letter-spacing: 0.08em; font-stretch: 125%; }
+#mLab { position: absolute; left: 0; right: 0; top: 860px; text-align: center; font-size: 46px; font-weight: 800; letter-spacing: 0.06em; font-stretch: 125%; color: #C2A24C; white-space: nowrap; }
+#kick { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-size: 46px; font-weight: 800; letter-spacing: 0.06em; font-stretch: 125%; white-space: nowrap; }
+#endLogo { position: absolute; left: 230px; top: 470px; width: 620px; }
+#endRule { position: absolute; left: 340px; top: 720px; width: 400px; height: 2px; background: rgba(194,162,76,0.6); }
+#cta { position: absolute; left: 190px; width: 700px; top: 780px; height: 120px; display: flex; align-items: center; justify-content: center; background: #C2A24C; color: #0F0F0F; font-size: 50px; font-weight: 800; letter-spacing: 0.03em; font-stretch: 125%; }
+#free { position: absolute; left: 0; right: 0; top: 928px; text-align: center; font-size: 38px; font-weight: 700; letter-spacing: 0.14em; font-stretch: 125%; color: #C2A24C; }
+#phone { position: absolute; left: 0; right: 0; top: 1010px; text-align: center; font-size: 40px; font-weight: 650; }
+#fine { position: absolute; left: 60px; right: 60px; top: 1130px; text-align: center; font-size: 22px; line-height: 28px; color: rgba(247,245,240,0.66); }
+#caps { position: absolute; left: 0; right: 0; top: 1236px; height: 110px; z-index: 30; }
+.cap { position: absolute; left: 30px; right: 30px; top: 0; display: flex; justify-content: center; gap: 22px; visibility: hidden; font-size: 66px; line-height: 90px; font-weight: 760; font-stretch: 112%; letter-spacing: 0.01em; text-shadow: 0 6px 24px rgba(0,0,0,0.7); white-space: nowrap; }
+.w { display: inline-block; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="23.1" data-width="1080" data-height="1920" data-motion-blur="on" data-motion-blur-shutter="200">
+<div id="glow"></div>
+<div class="clip scene" id="sHook" data-start="0.000" data-duration="2.104"><div class="cam"><div id="pcard"><div class="pc-top"><div><div class="pc-k">Commercial policy</div><div class="pc-t">STATUS: ACTIVE</div></div><svg class="pc-ic" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></div><div class="pc-row"><span>Policy no.</span><i style="width:220px"></i></div><div class="pc-row"><span>Effective</span><i style="width:180px"></i></div><div class="pc-row"><span>Premium</span><i style="width:150px"></i></div><div id="okBadge"><svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div></div></div></div>
+<div class="clip scene" id="sYears" data-start="2.104" data-duration="2.847"><div class="cam"><div id="yLab">LAST TIME IT WAS SHOPPED</div><div id="yWin"><div id="yStrip"><div class="yr">2026</div><div class="yr">2025</div><div class="yr">2024</div><div class="yr">2023</div><div class="yr">2022</div><div class="yr">2021</div><div class="yr">2020</div></div></div><div id="yQ">?</div></div></div>
+<div class="clip scene" id="sRenew" data-start="4.951" data-duration="3.053"><div class="cam"><div id="rPanel"><div class="rp-h">YOUR POLICY</div><div class="rp-row"><span>Auto-renew</span><div id="tg"><div id="tgK"></div></div></div><div id="rBadge">RATE UPDATED</div></div><div class="bill" id="bill0"><div><div class="b-k">Renewal premium</div><div class="b-m">YEAR 1</div></div><i></i><div class="paid" id="paid0">PAID</div></div><div class="bill" id="bill1"><div><div class="b-k">Renewal premium</div><div class="b-m">YEAR 2</div></div><i></i><div class="paid" id="paid1">PAID</div></div><div class="bill" id="bill2"><div><div class="b-k">Renewal premium</div><div class="b-m">YEAR 3</div></div><i></i><div class="paid" id="paid2">PAID</div></div></div></div>
+<div class="clip scene" id="sSend" data-start="8.004" data-duration="1.872"><div class="cam"><div class="doc" id="docA"><div class="dt">Declarations page</div><div class="rule"></div><div class="row" id="docAr0"><div class="lab">Named insured</div><div class="bar" style="width:74%"></div></div><div class="row" id="docAr1"><div class="lab">Policy period</div><div class="bar" style="width:56%"></div></div><div class="row" id="docAr2"><div class="lab">Coverages and limits</div><div class="bar" style="width:86%"></div></div><div class="prem"><div class="lab">Total premium</div><div class="pv">$<span class="bar" style="width:150px"></span></div></div></div><div class="badge" id="badge"><img src="assets/img/logo.svg" alt=""></div><div id="ring"></div></div></div>
+<div class="clip scene" id="sShop" data-start="9.876" data-duration="2.781"><div class="cam"><div class="doc" id="docB"><div class="dt">Declarations page</div><div class="rule"></div><div class="row" id="docBr0"><div class="lab">Named insured</div><div class="bar" style="width:74%"></div></div><div class="row" id="docBr1"><div class="lab">Policy period</div><div class="bar" style="width:56%"></div></div><div class="row" id="docBr2"><div class="lab">Coverages and limits</div><div class="bar" style="width:86%"></div></div><div class="prem"><div class="lab">Total premium</div><div class="pv">$<span class="bar" style="width:150px"></span></div></div></div><div id="scan"></div><div class="rck" id="rck0"><svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div><div class="rck" id="rck1"><svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div><div class="rck" id="rck2"><svg class="chk" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"></path></svg></div><div id="saveTag"><div class="st-k">WHAT YOU COULD SAVE</div><div class="st-v">$<i></i></div></div></div></div>
+<div class="clip scene" id="sCov" data-start="12.657" data-duration="3.517"><div class="cam"><div class="cv" id="cv0"><svg class="ic" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg><span>Auto</span></div><div class="cv" id="cv1"><svg class="ic" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg><span>Trucking</span></div><div class="cv" id="cv2"><svg class="ic" viewBox="0 0 24 24"><path d="M10 12h4"></path><path d="M10 8h4"></path><path d="M14 21v-3a2 2 0 0 0-4 0v3"></path><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path></svg><span>General liability</span></div><div class="cv" id="cv3"><svg class="ic" viewBox="0 0 24 24"><path d="M12 13v7a2 2 0 0 0 4 0"></path><path d="M12 2v2"></path><path d="M20.992 13a1 1 0 0 0 .97-1.274 10.284 10.284 0 0 0-19.923 0A1 1 0 0 0 3 13z"></path></svg><span>Umbrella</span></div><div class="cv" id="cv4"><svg class="ic" viewBox="0 0 24 24"><path d="M12 12h.01"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M22 13a18.15 18.15 0 0 1-20 0"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg><span>Business</span></div></div></div>
+<div class="clip scene" id="sMonths" data-start="16.174" data-duration="2.957"><div class="cam"><div id="mGrid"><div class="mt" id="mt0">JAN</div><div class="mt" id="mt1">FEB</div><div class="mt" id="mt2">MAR</div><div class="mt" id="mt3">APR</div><div class="mt" id="mt4">MAY</div><div class="mt" id="mt5">JUN</div><div class="mt" id="mt6">JUL</div><div class="mt" id="mt7">AUG</div><div class="mt" id="mt8">SEP</div><div class="mt" id="mt9">OCT</div><div class="mt" id="mt10">NOV</div><div class="mt" id="mt11">DEC</div></div><div id="mLab">STILL AT YOUR OLD RATE</div></div></div>
+<div class="clip scene" id="sEnd" data-start="19.131" data-duration="3.969"><div class="cam"><div id="kick">STILL ON YOUR OLD RATE?</div><img id="endLogo" src="assets/img/logo.svg" alt="The Experts Agency"><div id="endRule"></div><div id="cta">GET A FREE QUOTE</div><div id="free">IT&#39;S FREE</div><div id="phone">(929) 675-2948</div><div id="fine">Coverage and pricing subject to underwriting and state availability.</div></div></div>
+<div id="caps"><div class="cap" id="c0_0"><span class="w" id="c0_0_0">ALREADY</span><span class="w" id="c0_0_1">HAVE</span></div><div class="cap" id="c0_1"><span class="w" id="c0_1_0">INSURANCE?</span></div><div class="cap" id="c0_2"><span class="w" id="c0_2_0">PERFECT</span></div><div class="cap" id="c1_0"><span class="w" id="c1_0_0">WHEN'S</span><span class="w" id="c1_0_1">THE</span><span class="w" id="c1_0_2">LAST</span></div><div class="cap" id="c1_1"><span class="w" id="c1_1_0">TIME</span><span class="w" id="c1_1_1">ANYONE</span></div><div class="cap" id="c1_2"><span class="w" id="c1_2_0">ACTUALLY</span><span class="w" id="c1_2_1">SHOPPED</span><span class="w" id="c1_2_2">IT</span></div><div class="cap" id="c1_3"><span class="w" id="c1_3_0">FOR</span><span class="w" id="c1_3_1">YOU?</span></div><div class="cap" id="c2_0"><span class="w" id="c2_0_0">RATES</span><span class="w" id="c2_0_1">CHANGE</span></div><div class="cap" id="c2_1"><span class="w" id="c2_1_0">RENEWALS</span><span class="w" id="c2_1_1">ROLL</span><span class="w" id="c2_1_2">OVER</span></div><div class="cap" id="c2_2"><span class="w" id="c2_2_0">AND</span><span class="w" id="c2_2_1">YOU</span><span class="w" id="c2_2_2">KEEP</span></div><div class="cap" id="c2_3"><span class="w" id="c2_3_0">PAYING</span></div><div class="cap" id="c3_0"><span class="w" id="c3_0_0">SEND</span><span class="w" id="c3_0_1">US</span><span class="w" id="c3_0_2">YOUR</span></div><div class="cap" id="c3_1"><span class="w" id="c3_1_0">DECLARATIONS</span><span class="w" id="c3_1_1">PAGE</span></div><div class="cap" id="c4_0"><span class="w" id="c4_0_0">WE'LL</span><span class="w" id="c4_0_1">SHOP</span><span class="w" id="c4_0_2">IT</span></div><div class="cap" id="c4_1"><span class="w" id="c4_1_0">AND</span><span class="w" id="c4_1_1">SHOW</span><span class="w" id="c4_1_2">YOU</span></div><div class="cap" id="c4_2"><span class="w" id="c4_2_0">WHAT</span><span class="w" id="c4_2_1">YOU</span><span class="w" id="c4_2_2">COULD</span></div><div class="cap" id="c4_3"><span class="w" id="c4_3_0">BE</span><span class="w" id="c4_3_1">SAVING</span></div><div class="cap" id="c6_0"><span class="w" id="c6_0_0">EVERY</span><span class="w" id="c6_0_1">MONTH</span><span class="w" id="c6_0_2">YOU</span></div><div class="cap" id="c6_1"><span class="w" id="c6_1_0">WAIT</span><span class="w" id="c6_1_1">IS</span><span class="w" id="c6_1_2">ANOTHER</span></div><div class="cap" id="c6_2"><span class="w" id="c6_2_0">MONTH</span><span class="w" id="c6_2_1">AT</span><span class="w" id="c6_2_2">YOUR</span></div><div class="cap" id="c6_3"><span class="w" id="c6_3_0">OLD</span><span class="w" id="c6_3_1">RATE</span></div></div>
+<div id="vig"></div>
+<div id="grain"></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.set("#c0_0", {autoAlpha: 1}, 0.080);
+tl.fromTo("#c0_0_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 0.090);
+tl.set("#c0_0_0", {color: "#C2A24C"}, 0.090);
+tl.set("#c0_0_0", {color: "#F7F5F0"}, 0.450);
+tl.fromTo("#c0_0_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 0.450);
+tl.set("#c0_0_1", {color: "#C2A24C"}, 0.450);
+tl.set("#c0_0_1", {color: "#F7F5F0"}, 0.529);
+tl.to("#c0_0", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 0.459);
+tl.set("#c0_1", {autoAlpha: 1}, 0.579);
+tl.fromTo("#c0_1_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 0.589);
+tl.set("#c0_1_0", {color: "#C2A24C"}, 0.589);
+tl.set("#c0_1_0", {color: "#F7F5F0"}, 1.295);
+tl.to("#c0_1", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 1.225);
+tl.set("#c0_2", {autoAlpha: 1}, 1.345);
+tl.fromTo("#c0_2_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 1.355);
+tl.set("#c0_2_0", {color: "#C2A24C"}, 1.355);
+tl.set("#c0_2_0", {color: "#F7F5F0"}, 2.134);
+tl.to("#c0_2", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 2.064);
+tl.set("#c1_0", {autoAlpha: 1}, 2.184);
+tl.fromTo("#c1_0_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 2.194);
+tl.set("#c1_0_0", {color: "#C2A24C"}, 2.194);
+tl.set("#c1_0_0", {color: "#F7F5F0"}, 2.507);
+tl.fromTo("#c1_0_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 2.507);
+tl.set("#c1_0_1", {color: "#C2A24C"}, 2.507);
+tl.set("#c1_0_1", {color: "#F7F5F0"}, 2.624);
+tl.fromTo("#c1_0_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 2.624);
+tl.set("#c1_0_2", {color: "#C2A24C"}, 2.624);
+tl.set("#c1_0_2", {color: "#F7F5F0"}, 2.796);
+tl.to("#c1_0", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 2.726);
+tl.set("#c1_1", {autoAlpha: 1}, 2.846);
+tl.fromTo("#c1_1_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 2.856);
+tl.set("#c1_1_0", {color: "#C2A24C"}, 2.856);
+tl.set("#c1_1_0", {color: "#F7F5F0"}, 3.088);
+tl.fromTo("#c1_1_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 3.088);
+tl.set("#c1_1_1", {color: "#C2A24C"}, 3.088);
+tl.set("#c1_1_1", {color: "#F7F5F0"}, 3.318);
+tl.to("#c1_1", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 3.248);
+tl.set("#c1_2", {autoAlpha: 1}, 3.368);
+tl.fromTo("#c1_2_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 3.378);
+tl.set("#c1_2_0", {color: "#C2A24C"}, 3.378);
+tl.set("#c1_2_0", {color: "#F7F5F0"}, 3.715);
+tl.fromTo("#c1_2_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 3.715);
+tl.set("#c1_2_1", {color: "#C2A24C"}, 3.715);
+tl.set("#c1_2_1", {color: "#F7F5F0"}, 4.063);
+tl.fromTo("#c1_2_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 4.063);
+tl.set("#c1_2_2", {color: "#C2A24C"}, 4.063);
+tl.set("#c1_2_2", {color: "#F7F5F0"}, 4.119);
+tl.to("#c1_2", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 4.049);
+tl.set("#c1_3", {autoAlpha: 1}, 4.169);
+tl.fromTo("#c1_3_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 4.179);
+tl.set("#c1_3_0", {color: "#C2A24C"}, 4.179);
+tl.set("#c1_3_0", {color: "#F7F5F0"}, 4.377);
+tl.fromTo("#c1_3_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 4.377);
+tl.set("#c1_3_1", {color: "#C2A24C"}, 4.377);
+tl.set("#c1_3_1", {color: "#F7F5F0"}, 4.981);
+tl.to("#c1_3", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 4.911);
+tl.set("#c2_0", {autoAlpha: 1}, 5.031);
+tl.fromTo("#c2_0_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 5.041);
+tl.set("#c2_0_0", {color: "#C2A24C"}, 5.041);
+tl.set("#c2_0_0", {color: "#F7F5F0"}, 5.424);
+tl.fromTo("#c2_0_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 5.424);
+tl.set("#c2_0_1", {color: "#C2A24C"}, 5.424);
+tl.set("#c2_0_1", {color: "#F7F5F0"}, 5.829);
+tl.to("#c2_0", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 5.759);
+tl.set("#c2_1", {autoAlpha: 1}, 5.879);
+tl.fromTo("#c2_1_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 5.889);
+tl.set("#c2_1_0", {color: "#C2A24C"}, 5.889);
+tl.set("#c2_1_0", {color: "#F7F5F0"}, 6.330);
+tl.fromTo("#c2_1_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 6.330);
+tl.set("#c2_1_1", {color: "#C2A24C"}, 6.330);
+tl.set("#c2_1_1", {color: "#F7F5F0"}, 6.597);
+tl.fromTo("#c2_1_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 6.597);
+tl.set("#c2_1_2", {color: "#C2A24C"}, 6.597);
+tl.set("#c2_1_2", {color: "#F7F5F0"}, 6.781);
+tl.to("#c2_1", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 6.711);
+tl.set("#c2_2", {autoAlpha: 1}, 6.831);
+tl.fromTo("#c2_2_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 6.841);
+tl.set("#c2_2_0", {color: "#C2A24C"}, 6.841);
+tl.set("#c2_2_0", {color: "#F7F5F0"}, 6.957);
+tl.fromTo("#c2_2_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 6.957);
+tl.set("#c2_2_1", {color: "#C2A24C"}, 6.957);
+tl.set("#c2_2_1", {color: "#F7F5F0"}, 7.073);
+tl.fromTo("#c2_2_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 7.073);
+tl.set("#c2_2_2", {color: "#C2A24C"}, 7.073);
+tl.set("#c2_2_2", {color: "#F7F5F0"}, 7.222);
+tl.to("#c2_2", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 7.152);
+tl.set("#c2_3", {autoAlpha: 1}, 7.272);
+tl.fromTo("#c2_3_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 7.282);
+tl.set("#c2_3_0", {color: "#C2A24C"}, 7.282);
+tl.set("#c2_3_0", {color: "#F7F5F0"}, 8.034);
+tl.to("#c2_3", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 7.964);
+tl.set("#c3_0", {autoAlpha: 1}, 8.084);
+tl.fromTo("#c3_0_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 8.094);
+tl.set("#c3_0_0", {color: "#C2A24C"}, 8.094);
+tl.set("#c3_0_0", {color: "#F7F5F0"}, 8.349);
+tl.fromTo("#c3_0_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 8.349);
+tl.set("#c3_0_1", {color: "#C2A24C"}, 8.349);
+tl.set("#c3_0_1", {color: "#F7F5F0"}, 8.442);
+tl.fromTo("#c3_0_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 8.442);
+tl.set("#c3_0_2", {color: "#C2A24C"}, 8.442);
+tl.set("#c3_0_2", {color: "#F7F5F0"}, 8.522);
+tl.to("#c3_0", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 8.452);
+tl.set("#c3_1", {autoAlpha: 1}, 8.572);
+tl.fromTo("#c3_1_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 8.582);
+tl.set("#c3_1_0", {color: "#C2A24C"}, 8.582);
+tl.set("#c3_1_0", {color: "#F7F5F0"}, 9.197);
+tl.fromTo("#c3_1_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 9.197);
+tl.set("#c3_1_1", {color: "#C2A24C"}, 9.197);
+tl.set("#c3_1_1", {color: "#F7F5F0"}, 9.886);
+tl.to("#c3_1", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 9.816);
+tl.set("#c4_0", {autoAlpha: 1}, 9.936);
+tl.fromTo("#c4_0_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 9.946);
+tl.set("#c4_0_0", {color: "#C2A24C"}, 9.946);
+tl.set("#c4_0_0", {color: "#F7F5F0"}, 10.225);
+tl.fromTo("#c4_0_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 10.225);
+tl.set("#c4_0_1", {color: "#C2A24C"}, 10.225);
+tl.set("#c4_0_1", {color: "#F7F5F0"}, 10.585);
+tl.fromTo("#c4_0_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 10.585);
+tl.set("#c4_0_2", {color: "#C2A24C"}, 10.585);
+tl.set("#c4_0_2", {color: "#F7F5F0"}, 10.699);
+tl.to("#c4_0", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 10.629);
+tl.set("#c4_1", {autoAlpha: 1}, 10.749);
+tl.fromTo("#c4_1_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 10.759);
+tl.set("#c4_1_0", {color: "#C2A24C"}, 10.759);
+tl.set("#c4_1_0", {color: "#F7F5F0"}, 10.968);
+tl.fromTo("#c4_1_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 10.968);
+tl.set("#c4_1_1", {color: "#C2A24C"}, 10.968);
+tl.set("#c4_1_1", {color: "#F7F5F0"}, 11.200);
+tl.fromTo("#c4_1_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 11.200);
+tl.set("#c4_1_2", {color: "#C2A24C"}, 11.200);
+tl.set("#c4_1_2", {color: "#F7F5F0"}, 11.244);
+tl.to("#c4_1", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 11.174);
+tl.set("#c4_2", {autoAlpha: 1}, 11.294);
+tl.fromTo("#c4_2_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 11.304);
+tl.set("#c4_2_0", {color: "#C2A24C"}, 11.304);
+tl.set("#c4_2_0", {color: "#F7F5F0"}, 11.455);
+tl.fromTo("#c4_2_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 11.455);
+tl.set("#c4_2_1", {color: "#C2A24C"}, 11.455);
+tl.set("#c4_2_1", {color: "#F7F5F0"}, 11.571);
+tl.fromTo("#c4_2_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 11.571);
+tl.set("#c4_2_2", {color: "#C2A24C"}, 11.571);
+tl.set("#c4_2_2", {color: "#F7F5F0"}, 11.662);
+tl.to("#c4_2", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 11.592);
+tl.set("#c4_3", {autoAlpha: 1}, 11.712);
+tl.fromTo("#c4_3_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 11.722);
+tl.set("#c4_3_0", {color: "#C2A24C"}, 11.722);
+tl.set("#c4_3_0", {color: "#F7F5F0"}, 11.862);
+tl.fromTo("#c4_3_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 11.862);
+tl.set("#c4_3_1", {color: "#C2A24C"}, 11.862);
+tl.set("#c4_3_1", {color: "#F7F5F0"}, 12.687);
+tl.to("#c4_3", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 12.617);
+tl.set("#c6_0", {autoAlpha: 1}, 16.274);
+tl.fromTo("#c6_0_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 16.284);
+tl.set("#c6_0_0", {color: "#C2A24C"}, 16.284);
+tl.set("#c6_0_0", {color: "#F7F5F0"}, 16.609);
+tl.fromTo("#c6_0_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 16.609);
+tl.set("#c6_0_1", {color: "#C2A24C"}, 16.609);
+tl.set("#c6_0_1", {color: "#F7F5F0"}, 16.841);
+tl.fromTo("#c6_0_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 16.841);
+tl.set("#c6_0_2", {color: "#C2A24C"}, 16.841);
+tl.set("#c6_0_2", {color: "#F7F5F0"}, 16.909);
+tl.to("#c6_0", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 16.839);
+tl.set("#c6_1", {autoAlpha: 1}, 16.959);
+tl.fromTo("#c6_1_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 16.969);
+tl.set("#c6_1_0", {color: "#C2A24C"}, 16.969);
+tl.set("#c6_1_0", {color: "#F7F5F0"}, 17.190);
+tl.fromTo("#c6_1_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 17.190);
+tl.set("#c6_1_1", {color: "#C2A24C"}, 17.190);
+tl.set("#c6_1_1", {color: "#F7F5F0"}, 17.329);
+tl.fromTo("#c6_1_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 17.329);
+tl.set("#c6_1_2", {color: "#C2A24C"}, 17.329);
+tl.set("#c6_1_2", {color: "#F7F5F0"}, 17.640);
+tl.to("#c6_1", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 17.570);
+tl.set("#c6_2", {autoAlpha: 1}, 17.690);
+tl.fromTo("#c6_2_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 17.700);
+tl.set("#c6_2_0", {color: "#C2A24C"}, 17.700);
+tl.set("#c6_2_0", {color: "#F7F5F0"}, 17.944);
+tl.fromTo("#c6_2_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 17.944);
+tl.set("#c6_2_1", {color: "#C2A24C"}, 17.944);
+tl.set("#c6_2_1", {color: "#F7F5F0"}, 18.037);
+tl.fromTo("#c6_2_2", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 18.037);
+tl.set("#c6_2_2", {color: "#C2A24C"}, 18.037);
+tl.set("#c6_2_2", {color: "#F7F5F0"}, 18.151);
+tl.to("#c6_2", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 18.081);
+tl.set("#c6_3", {autoAlpha: 1}, 18.201);
+tl.fromTo("#c6_3_0", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 18.211);
+tl.set("#c6_3_0", {color: "#C2A24C"}, 18.211);
+tl.set("#c6_3_0", {color: "#F7F5F0"}, 18.397);
+tl.fromTo("#c6_3_1", {opacity: 0, y: 26, scale: 0.92}, {opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "expo.out"}, 18.397);
+tl.set("#c6_3_1", {color: "#C2A24C"}, 18.397);
+tl.set("#c6_3_1", {color: "#F7F5F0"}, 19.151);
+tl.to("#c6_3", {autoAlpha: 0, y: -14, duration: 0.12, ease: "power2.in"}, 19.081);
+tl.fromTo("#pcard", {x: 40, y: -60, scale: 1.5, rotation: -11}, {x: 0, y: 0, scale: 1, rotation: -3, duration: 0.55, ease: "expo.out"}, 0);
+tl.to("#pcard", {rotation: -1.5, y: -12, duration: 1.55, ease: "sine.inOut"}, 0.55);
+tl.fromTo("#okBadge", {autoAlpha: 0, scale: 2.2, rotation: -30}, {autoAlpha: 1, scale: 1, rotation: 0, duration: 0.3, ease: "back.out(2)"}, 1.305);
+tl.fromTo("#okBadge .chk path", {strokeDashoffset: 30}, {strokeDashoffset: 0, duration: 0.25, ease: "power2.out"}, 1.435);
+tl.fromTo("#yLab", {autoAlpha: 0, y: 20}, {autoAlpha: 1, y: 0, duration: 0.4, ease: "expo.out"}, 2.204);
+tl.fromTo("#yWin", {autoAlpha: 0, scale: 0.85}, {autoAlpha: 1, scale: 1, duration: 0.45, ease: "expo.out"}, 2.154);
+tl.to("#yStrip", {y: -280, duration: 0.24, ease: "power3.out"}, 2.774);
+tl.to("#yStrip", {y: -560, duration: 0.24, ease: "power3.out"}, 3.014);
+tl.to("#yStrip", {y: -840, duration: 0.24, ease: "power3.out"}, 3.253);
+tl.to("#yStrip", {y: -1120, duration: 0.24, ease: "power3.out"}, 3.493);
+tl.to("#yStrip", {y: -1400, duration: 0.24, ease: "power3.out"}, 3.733);
+tl.to("#yStrip", {y: -1680, duration: 0.24, ease: "power3.out"}, 3.973);
+tl.to("#yWin", {opacity: 0.3, x: -110, scale: 0.9, duration: 0.35, ease: "expo.out"}, 4.357);
+tl.fromTo("#yQ", {autoAlpha: 0, scale: 2.4}, {autoAlpha: 1, scale: 1, duration: 0.28, ease: "power4.out"}, 4.347);
+tl.fromTo("#rPanel", {autoAlpha: 0, y: 60}, {autoAlpha: 1, y: 0, duration: 0.5, ease: "expo.out"}, 4.971);
+tl.fromTo("#rBadge", {autoAlpha: 0, scale: 0.5}, {autoAlpha: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)"}, 5.404);
+tl.to("#tgK", {x: 72, duration: 0.18, ease: "power3.out"}, 6.340);
+tl.to("#tg", {backgroundColor: "#C2A24C", duration: 0.18}, 6.340);
+tl.to("#rPanel", {y: -250, scale: 0.8, autoAlpha: 0.0, duration: 0.4, ease: "power3.in"}, 6.621);
+tl.fromTo("#bill0", {autoAlpha: 0, y: 140, rotation: 4}, {autoAlpha: 1, y: 0, rotation: 1.5, duration: 0.4, ease: "expo.out"}, 6.821);
+tl.fromTo("#paid0", {autoAlpha: 0, scale: 2.2}, {autoAlpha: 1, scale: 1, duration: 0.12, ease: "power4.in"}, 6.963);
+tl.fromTo("#bill1", {autoAlpha: 0, y: 140, rotation: -4}, {autoAlpha: 1, y: 0, rotation: -1.5, duration: 0.4, ease: "expo.out"}, 6.941);
+tl.fromTo("#paid1", {autoAlpha: 0, scale: 2.2}, {autoAlpha: 1, scale: 1, duration: 0.12, ease: "power4.in"}, 7.192);
+tl.fromTo("#bill2", {autoAlpha: 0, y: 140, rotation: 4}, {autoAlpha: 1, y: 0, rotation: 1.5, duration: 0.4, ease: "expo.out"}, 7.061);
+tl.fromTo("#paid2", {autoAlpha: 0, scale: 2.2}, {autoAlpha: 1, scale: 1, duration: 0.12, ease: "power4.in"}, 7.452);
+tl.fromTo("#docA", {autoAlpha: 0, y: 260, rotation: 6, scale: 0.8}, {autoAlpha: 1, y: 150, rotation: -2, scale: 0.8, duration: 0.55, ease: "expo.out"}, 8.024);
+tl.fromTo("#badge", {autoAlpha: 0, scale: 0.6, y: 30}, {autoAlpha: 1, scale: 1, y: 0, duration: 0.45, ease: "expo.out"}, 8.104);
+tl.to("#docA", {y: -330, scale: 0.12, rotation: 8, autoAlpha: 0, duration: 0.42, ease: "power3.in"}, 9.107);
+tl.to("#badge", {keyframes: [{scale: 1.12, duration: 0.09, ease: "power2.out"}, {scale: 1, duration: 0.35, ease: "expo.out"}]}, 9.527);
+tl.fromTo("#ring", {autoAlpha: 0.9, scale: 0.6}, {autoAlpha: 0, scale: 1.9, duration: 0.7, ease: "expo.out", immediateRender: false}, 9.527);
+tl.fromTo("#docB", {autoAlpha: 0, x: -200, rotation: -6}, {autoAlpha: 1, x: -110, rotation: -2, duration: 0.55, ease: "expo.out"}, 9.876);
+tl.fromTo("#scan", {autoAlpha: 0, y: 0}, {autoAlpha: 1, y: 0, duration: 0.1}, 10.205);
+tl.to("#scan", {y: 560, duration: 1.1, ease: "power1.inOut"}, 10.205);
+tl.to("#scan", {autoAlpha: 0, duration: 0.15}, 11.305);
+tl.fromTo("#rck0", {autoAlpha: 0, scale: 0.4}, {autoAlpha: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)"}, 10.505);
+tl.fromTo("#rck0 .chk path", {strokeDashoffset: 30}, {strokeDashoffset: 0, duration: 0.22, ease: "power2.out"}, 10.555);
+tl.fromTo("#rck1", {autoAlpha: 0, scale: 0.4}, {autoAlpha: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)"}, 10.785);
+tl.fromTo("#rck1 .chk path", {strokeDashoffset: 30}, {strokeDashoffset: 0, duration: 0.22, ease: "power2.out"}, 10.835);
+tl.fromTo("#rck2", {autoAlpha: 0, scale: 0.4}, {autoAlpha: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)"}, 11.065);
+tl.fromTo("#rck2 .chk path", {strokeDashoffset: 30}, {strokeDashoffset: 0, duration: 0.22, ease: "power2.out"}, 11.115);
+tl.fromTo("#saveTag", {autoAlpha: 0, x: -120, rotation: 0}, {autoAlpha: 1, x: 0, rotation: 4, duration: 0.45, ease: "expo.out"}, 11.812);
+tl.fromTo("#saveTag i", {backgroundPosition: "-300px 0px"}, {backgroundPosition: "300px 0px", duration: 1.2, ease: "none"}, 11.892);
+tl.fromTo("#cv0", {autoAlpha: 0, x: 40}, {autoAlpha: 0.16, x: 0, duration: 0.12, ease: "power2.out"}, 12.657);
+tl.to("#cv0", {opacity: 1, duration: 0.18, ease: "power2.out"}, 12.797);
+tl.fromTo("#cv0 .ic", {scale: 1}, {keyframes: [{scale: 1.3, duration: 0.08}, {scale: 1, duration: 0.35, ease: "expo.out"}]}, 12.797);
+tl.set("#cv0", {color: "#C2A24C"}, 12.717);
+tl.fromTo("#cv1", {autoAlpha: 0, x: 40}, {autoAlpha: 0.16, x: 0, duration: 0.12, ease: "power2.out"}, 12.677);
+tl.to("#cv1", {opacity: 1, duration: 0.18, ease: "power2.out"}, 13.344);
+tl.fromTo("#cv1 .ic", {scale: 1}, {keyframes: [{scale: 1.3, duration: 0.08}, {scale: 1, duration: 0.35, ease: "expo.out"}]}, 13.344);
+tl.set("#cv1", {color: "#C2A24C"}, 13.344);
+tl.set("#cv0", {color: "#F7F5F0"}, 13.344);
+tl.fromTo("#cv2", {autoAlpha: 0, x: 40}, {autoAlpha: 0.16, x: 0, duration: 0.12, ease: "power2.out"}, 12.697);
+tl.to("#cv2", {opacity: 1, duration: 0.18, ease: "power2.out"}, 13.855);
+tl.fromTo("#cv2 .ic", {scale: 1}, {keyframes: [{scale: 1.3, duration: 0.08}, {scale: 1, duration: 0.35, ease: "expo.out"}]}, 13.855);
+tl.set("#cv2", {color: "#C2A24C"}, 13.855);
+tl.set("#cv1", {color: "#F7F5F0"}, 13.855);
+tl.fromTo("#cv3", {autoAlpha: 0, x: 40}, {autoAlpha: 0.16, x: 0, duration: 0.12, ease: "power2.out"}, 12.717);
+tl.to("#cv3", {opacity: 1, duration: 0.18, ease: "power2.out"}, 14.784);
+tl.fromTo("#cv3 .ic", {scale: 1}, {keyframes: [{scale: 1.3, duration: 0.08}, {scale: 1, duration: 0.35, ease: "expo.out"}]}, 14.784);
+tl.set("#cv3", {color: "#C2A24C"}, 14.784);
+tl.set("#cv2", {color: "#F7F5F0"}, 14.784);
+tl.fromTo("#cv4", {autoAlpha: 0, x: 40}, {autoAlpha: 0.16, x: 0, duration: 0.12, ease: "power2.out"}, 12.737);
+tl.to("#cv4", {opacity: 1, duration: 0.18, ease: "power2.out"}, 15.248);
+tl.fromTo("#cv4 .ic", {scale: 1}, {keyframes: [{scale: 1.3, duration: 0.08}, {scale: 1, duration: 0.35, ease: "expo.out"}]}, 15.248);
+tl.set("#cv4", {color: "#C2A24C"}, 15.248);
+tl.set("#cv3", {color: "#F7F5F0"}, 15.248);
+tl.set("#cv4", {color: "#F7F5F0"}, 16.174);
+tl.fromTo("#mt0", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.194);
+tl.to("#mt0", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 16.624);
+tl.fromTo("#mt1", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.206);
+tl.to("#mt1", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 16.757);
+tl.fromTo("#mt2", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.218);
+tl.to("#mt2", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 16.891);
+tl.fromTo("#mt3", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.230);
+tl.to("#mt3", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.024);
+tl.fromTo("#mt4", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.242);
+tl.to("#mt4", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.157);
+tl.fromTo("#mt5", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.254);
+tl.to("#mt5", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.291);
+tl.fromTo("#mt6", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.266);
+tl.to("#mt6", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.424);
+tl.fromTo("#mt7", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.278);
+tl.to("#mt7", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.558);
+tl.fromTo("#mt8", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.290);
+tl.to("#mt8", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.691);
+tl.fromTo("#mt9", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.302);
+tl.to("#mt9", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.824);
+tl.fromTo("#mt10", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.314);
+tl.to("#mt10", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 17.958);
+tl.fromTo("#mt11", {autoAlpha: 0, y: 30}, {autoAlpha: 0.22, y: 0, duration: 0.25, ease: "expo.out"}, 16.326);
+tl.to("#mt11", {keyframes: [{opacity: 1, scaleY: 0.15, duration: 0.07, ease: "power2.in"}, {scaleY: 1, duration: 0.2, ease: "expo.out"}]}, 18.091);
+tl.to(".mt", {backgroundColor: "rgba(194,162,76,0.9)", color: "#0F0F0F", duration: 0.2, stagger: 0.015}, 18.181);
+tl.fromTo("#mLab", {autoAlpha: 0, y: 30}, {autoAlpha: 1, y: 0, duration: 0.4, ease: "expo.out"}, 18.201);
+tl.to("#mGrid", {keyframes: [{scale: 1.04, duration: 0.07}, {scale: 1, duration: 0.4, ease: "expo.out"}]}, 18.241);
+tl.fromTo("#kick", {autoAlpha: 0, y: -30, scale: 1.1}, {autoAlpha: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out"}, 19.131);
+tl.fromTo("#endLogo", {autoAlpha: 0, scale: 0.86}, {autoAlpha: 1, scale: 1, duration: 0.7, ease: "expo.out"}, 19.181);
+tl.fromTo("#endRule", {scaleX: 0}, {scaleX: 1, duration: 0.6, ease: "expo.out"}, 19.431);
+tl.fromTo("#cta", {autoAlpha: 0, y: 40, scale: 0.9}, {autoAlpha: 1, y: 0, scale: 1, duration: 0.42, ease: "back.out(1.8)"}, 19.490);
+tl.fromTo("#free", {autoAlpha: 0, y: 20}, {autoAlpha: 1, y: 0, duration: 0.35, ease: "expo.out"}, 20.206);
+tl.set("#kick", {color: "#C2A24C"}, 20.206);
+tl.fromTo("#phone", {autoAlpha: 0}, {autoAlpha: 1, duration: 0.4}, 20.536);
+tl.fromTo("#fine", {autoAlpha: 0}, {autoAlpha: 1, duration: 0.4}, 20.736);
+tl.to("#cta", {keyframes: [{scale: 1.05, duration: 0.25, ease: "sine.out"}, {scale: 1, duration: 0.35, ease: "sine.in"}]}, 21.236);
+tl.fromTo("#sHook .cam", {scale: 1}, {scale: 1.035, duration: 2.104, ease: "none"}, 0.000);
+tl.to("#sHook .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 1.904);
+tl.fromTo("#sYears .cam", {scale: 1}, {scale: 1.035, duration: 2.847, ease: "none"}, 2.104);
+tl.fromTo("#sYears .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 2.104);
+tl.to("#sYears .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 4.751);
+tl.fromTo("#sRenew .cam", {scale: 1}, {scale: 1.035, duration: 3.053, ease: "none"}, 4.951);
+tl.fromTo("#sRenew .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 4.951);
+tl.to("#sRenew .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 7.804);
+tl.fromTo("#sSend .cam", {scale: 1}, {scale: 1.035, duration: 1.872, ease: "none"}, 8.004);
+tl.fromTo("#sSend .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 8.004);
+tl.to("#sSend .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 9.676);
+tl.fromTo("#sShop .cam", {scale: 1}, {scale: 1.035, duration: 2.781, ease: "none"}, 9.876);
+tl.fromTo("#sShop .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 9.876);
+tl.to("#sShop .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 12.457);
+tl.fromTo("#sCov .cam", {scale: 1}, {scale: 1.035, duration: 3.517, ease: "none"}, 12.657);
+tl.fromTo("#sCov .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 12.657);
+tl.to("#sCov .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 15.974);
+tl.fromTo("#sMonths .cam", {scale: 1}, {scale: 1.035, duration: 2.957, ease: "none"}, 16.174);
+tl.fromTo("#sMonths .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 16.174);
+tl.to("#sMonths .cam", {x: -420, duration: 0.2, ease: "power3.in"}, 18.931);
+tl.fromTo("#sEnd .cam", {scale: 1}, {scale: 1.035, duration: 3.969, ease: "none"}, 19.131);
+tl.fromTo("#sEnd .cam", {x: 420}, {x: 0, duration: 0.42, ease: "expo.out"}, 19.131);
+tl.fromTo("#grain", {backgroundPosition: "0px 0px"}, {backgroundPosition: "-553px -889px", duration: 23.1, ease: "steps(693)"}, 0);
+tl.fromTo("#glow", {x: -160, y: 0}, {x: 160, y: 120, duration: 23.1, ease: "sine.inOut"}, 0);
+window.__timelines = window.__timelines || {};
+window.__timelines["main"] = tl;
+tl.seek(0);
+</script>
+</body>
+</html>

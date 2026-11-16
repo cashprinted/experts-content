@@ -1,0 +1,8 @@
+node_modules/
+renders/
+snaps*/
+.hyperframes/
+__pycache__/
+*.premaster.wav
+*.zip
+.env
