@@ -16,28 +16,32 @@
   "dur": 0.88
  },
  "stamp": {
-  "hit": 0.106,
-  "dur": 0.68
+  "hit": 0.083,
+  "dur": 0.68,
+  "peak": 0.106
  },
  "pop": {
-  "hit": 0.018,
-  "dur": 0.48
+  "hit": 0.01,
+  "dur": 0.48,
+  "peak": 0.018
  },
  "swipe": {
   "hit": 0.146,
   "dur": 0.6
  },
  "tick": {
-  "hit": 0.048,
-  "dur": 0.48
+  "hit": 0.004,
+  "dur": 0.48,
+  "peak": 0.048
  },
  "riser": {
   "hit": 1.319,
   "dur": 1.48
  },
  "chime": {
-  "hit": 0.019,
-  "dur": 1.6
+  "hit": 0.005,
+  "dur": 1.6,
+  "peak": 0.019
  },
  "swoosh_up": {
   "hit": 0.096,
@@ -46,5 +50,6 @@
  "paper": {
   "hit": 0.479,
   "dur": 0.8
- }
+ },
+ "_note": "hit = the moment the sound is heard: attack for percussive sounds (tick, chime, pop, stamp), peak for whooshes and risers, first transient for impact. Re-measured Nov 16 with the motion-reel sync check."
 }
