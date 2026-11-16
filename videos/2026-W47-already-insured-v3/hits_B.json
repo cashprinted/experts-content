@@ -1,0 +1,490 @@
+{
+ "variant": "B",
+ "dur": 15.998,
+ "cuts": [
+  0.0,
+  2.496,
+  5.746,
+  7.747,
+  10.247,
+  12.997
+ ],
+ "drop": 2.496,
+ "music_trim": 1.0251,
+ "hits": [
+  {
+   "t": 0.0,
+   "label": "card lands",
+   "lib": [
+    "impact",
+    -8,
+    "hero"
+   ],
+   "synth": [
+    "whoosh",
+    {
+     "gain": 0.25,
+     "from": 3000,
+     "to": 300
+    }
+   ]
+  },
+  {
+   "t": 0.432,
+   "label": "insured check",
+   "lib": [
+    "pop",
+    -6,
+    "fx"
+   ],
+   "synth": [
+    "pop",
+    {
+     "gain": 0.25
+    }
+   ]
+  },
+  {
+   "t": 0.957,
+   "label": "headline 2",
+   "lib": [
+    "whoosh",
+    -16,
+    "fx"
+   ],
+   "synth": [
+    "click",
+    {
+     "gain": 0.2
+    }
+   ]
+  },
+  {
+   "t": 1.771,
+   "label": "price ?",
+   "lib": [
+    "impact",
+    -12,
+    "hero"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.45,
+     "len": 0.5
+    }
+   ]
+  },
+  {
+   "t": 2.496,
+   "label": "cut 1",
+   "lib": [
+    "whoosh_hard",
+    -7,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.5,
+     "len": 0.5
+    }
+   ]
+  },
+  {
+   "t": 2.496,
+   "label": "drop",
+   "lib": [
+    "impact",
+    -6,
+    "hero"
+   ],
+   "synth": [
+    "riser",
+    {
+     "gain": 0.22,
+     "len": 1.2
+    }
+   ]
+  },
+  {
+   "t": 2.894,
+   "label": "rate updated",
+   "lib": [
+    "pop",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.18,
+     "pitch": "A5"
+    }
+   ]
+  },
+  {
+   "t": 3.398,
+   "label": "panel out",
+   "lib": [
+    "swipe",
+    -12,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 4.651,
+   "label": "PAID 1",
+   "lib": [
+    "stamp",
+    -5,
+    "hero"
+   ],
+   "synth": null
+  },
+  {
+   "t": 4.856,
+   "label": "PAID 2",
+   "lib": [
+    "stamp",
+    -5,
+    "hero"
+   ],
+   "synth": null
+  },
+  {
+   "t": 5.106,
+   "label": "PAID 3",
+   "lib": [
+    "stamp",
+    -5,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.3
+    }
+   ]
+  },
+  {
+   "t": 5.746,
+   "label": "cut 2",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 6.01,
+   "label": "logo in",
+   "lib": [
+    "pop",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 6.807,
+   "label": "doc sent",
+   "lib": [
+    "swoosh_up",
+    -8,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 7.167,
+   "label": "received",
+   "lib": [
+    "chime",
+    -15,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.16,
+     "pitch": "E6"
+    }
+   ]
+  },
+  {
+   "t": 7.747,
+   "label": "cut 3",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 8.046,
+   "label": "scan",
+   "lib": [
+    "swipe",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.346,
+   "label": "check 1",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.586,
+   "label": "check 2",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.826,
+   "label": "check 3",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 9.054,
+   "label": "save tag",
+   "lib": [
+    "impact",
+    -11,
+    "hero"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.22,
+     "pitch": "A6"
+    }
+   ]
+  },
+  {
+   "t": 10.247,
+   "label": "cut 4",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 10.607,
+   "label": "month 1",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.734,
+   "label": "month 2",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.861,
+   "label": "month 3",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.987,
+   "label": "month 4",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.114,
+   "label": "month 5",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.241,
+   "label": "month 6",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.368,
+   "label": "month 7",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.495,
+   "label": "month 8",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.622,
+   "label": "month 9",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.748,
+   "label": "month 10",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.875,
+   "label": "month 11",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 12.002,
+   "label": "month 12",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 12.082,
+   "label": "old rate lock",
+   "lib": [
+    "impact",
+    -9,
+    "hero"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.4,
+     "len": 0.45
+    }
+   ]
+  },
+  {
+   "t": 12.997,
+   "label": "cut 5",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 13.326,
+   "label": "GET A FREE QUOTE",
+   "lib": [
+    "pop",
+    -8,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.2,
+     "pitch": "D6"
+    }
+   ]
+  },
+  {
+   "t": 14.1,
+   "label": "free",
+   "lib": [
+    "pop",
+    -15,
+    "fx"
+   ],
+   "synth": null
+  }
+ ]
+}
