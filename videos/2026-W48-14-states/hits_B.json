@@ -263,29 +263,14 @@
    "synth": null
   },
   {
-   "t": 1.917,
-   "label": "count 3",
-   "lib": [
-    "tick",
-    -18,
-    "fx"
-   ],
-   "synth": null
-  },
-  {
    "t": 2.037,
    "label": "14 lands",
    "lib": [
-    "stamp",
-    -6,
+    "impact",
+    -8,
     "hero"
    ],
-   "synth": [
-    "thud",
-    {
-     "gain": 0.35
-    }
-   ]
+   "synth": null
   },
   {
    "t": 2.398,

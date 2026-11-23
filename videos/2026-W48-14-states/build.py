@@ -157,12 +157,12 @@ team = ('<div id="count"><span id="num">14</span><span id="numL">STATES</span></
         )
 add('tl.set(["#hub", "#hubR"], {autoAlpha: 0}, 0);')
 add('tl.set(".ln", {strokeDashoffset: 1000}, 0);')
-add(f'tl.fromTo("#count", {{y: -90, scale: 1.35}}, {{y: 0, scale: 1, duration: 0.24, ease: "power4.in"}}, {at(S1)});')
+add(f'tl.fromTo("#count", {{y: 0, scale: 1.3}}, {{y: 0, scale: 1, duration: 0.24, ease: "power4.in"}}, {at(S1)});')
 fo = W(2, 0)
 for n in range(1, 15):  # count 1 -> 14 on "Fourteen", easing out
     add(f'tl.set("#num", {{textContent: "{n}"}}, {at(S1 if n == 1 else fo - 0.04 + 0.42 * (1 - (1 - (n - 1) / 13) ** 2))});')
 shake("#sTeam .shk", fo + 0.4, 12)
-hit(fo + 0.4, "14 lands", ("stamp", -6, "hero"), None)
+hit(fo + 0.4, "14 lands", ("impact", -8, "hero"), None)
 for n in range(3):
     hit(fo - 0.02 + n * 0.1, f"count {n}", ("tick", -18, "fx"), None)
 ot = W(2, 2)

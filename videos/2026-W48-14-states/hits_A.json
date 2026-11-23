@@ -158,8 +158,8 @@
    "t": 2.501,
    "label": "14 lands",
    "lib": [
-    "stamp",
-    -6,
+    "impact",
+    -8,
     "hero"
    ],
    "synth": null
