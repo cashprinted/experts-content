@@ -1,0 +1,432 @@
+{
+ "variant": "A",
+ "dur": 14.542,
+ "cuts": [
+  0.0,
+  2.542,
+  5.292,
+  7.542,
+  9.292,
+  11.292
+ ],
+ "drop": 2.542,
+ "music_trim": 1.4795,
+ "hits": [
+  {
+   "t": 0.0,
+   "label": "card lands",
+   "lib": [
+    "impact",
+    -8,
+    "hero"
+   ],
+   "synth": [
+    "whoosh",
+    {
+     "gain": 0.25,
+     "from": 3000,
+     "to": 300
+    }
+   ]
+  },
+  {
+   "t": 0.876,
+   "label": "limit line",
+   "lib": [
+    "swipe",
+    -14,
+    "fx"
+   ],
+   "synth": [
+    "click",
+    {
+     "gain": 0.22
+    }
+   ]
+  },
+  {
+   "t": 1.247,
+   "label": "headline 2",
+   "lib": [
+    "whoosh",
+    -16,
+    "fx"
+   ],
+   "synth": [
+    "click",
+    {
+     "gain": 0.2
+    }
+   ]
+  },
+  {
+   "t": 1.384,
+   "label": "claim surges",
+   "lib": [
+    "whoosh_hard",
+    -12,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.35,
+     "len": 0.35
+    }
+   ]
+  },
+  {
+   "t": 1.847,
+   "label": "over the limit",
+   "lib": [
+    "impact",
+    -10,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.4
+    }
+   ]
+  },
+  {
+   "t": 2.542,
+   "label": "cut 1",
+   "lib": [
+    "whoosh_hard",
+    -7,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.5,
+     "len": 0.5
+    }
+   ]
+  },
+  {
+   "t": 2.542,
+   "label": "drop",
+   "lib": [
+    "impact",
+    -6,
+    "hero"
+   ],
+   "synth": [
+    "riser",
+    {
+     "gain": 0.22,
+     "len": 1.2
+    }
+   ]
+  },
+  {
+   "t": 2.909,
+   "label": "umbrella lands",
+   "lib": [
+    "stamp",
+    -9,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.3
+    }
+   ]
+  },
+  {
+   "t": 3.694,
+   "label": "layer lands",
+   "lib": [
+    "impact",
+    -9,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.4
+    }
+   ]
+  },
+  {
+   "t": 4.531,
+   "label": "covered",
+   "lib": [
+    "chime",
+    -15,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.18,
+     "pitch": "E6"
+    }
+   ]
+  },
+  {
+   "t": 5.292,
+   "label": "cut 2",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 5.492,
+   "label": "band slams",
+   "lib": [
+    "stamp",
+    -7,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.35
+    }
+   ]
+  },
+  {
+   "t": 5.818,
+   "label": "tile AUTO",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "C6"
+    }
+   ]
+  },
+  {
+   "t": 6.097,
+   "label": "tile HOME",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "E6"
+    }
+   ]
+  },
+  {
+   "t": 6.41,
+   "label": "tile BUSINESS",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "G6"
+    }
+   ]
+  },
+  {
+   "t": 7.542,
+   "label": "cut 3",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 7.817,
+   "label": "logo in",
+   "lib": [
+    "pop",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.301,
+   "label": "doc sent",
+   "lib": [
+    "swoosh_up",
+    -8,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.661,
+   "label": "received",
+   "lib": [
+    "chime",
+    -15,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.16,
+     "pitch": "E6"
+    }
+   ]
+  },
+  {
+   "t": 9.292,
+   "label": "cut 4",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 9.591,
+   "label": "scan",
+   "lib": [
+    "swipe",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 9.871,
+   "label": "check 1",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.091,
+   "label": "check 2",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.15,
+   "label": "limits tag",
+   "lib": [
+    "stamp",
+    -9,
+    "hero"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.2,
+     "pitch": "A6"
+    }
+   ]
+  },
+  {
+   "t": 10.311,
+   "label": "check 3",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.8,
+   "label": "marker set",
+   "lib": [
+    "tick",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "click",
+    {
+     "gain": 0.2
+    }
+   ]
+  },
+  {
+   "t": 11.292,
+   "label": "cut 5",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 11.632,
+   "label": "GET A FREE QUOTE",
+   "lib": [
+    "pop",
+    -8,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.2,
+     "pitch": "D6"
+    }
+   ]
+  },
+  {
+   "t": 12.372,
+   "label": "free",
+   "lib": [
+    "pop",
+    -15,
+    "fx"
+   ],
+   "synth": null
+  }
+ ]
+}

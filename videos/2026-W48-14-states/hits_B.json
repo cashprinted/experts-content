@@ -1,0 +1,731 @@
+{
+ "variant": "B",
+ "dur": 16.066,
+ "cuts": [
+  0.0,
+  1.567,
+  3.317,
+  5.817,
+  7.567,
+  10.317,
+  13.066
+ ],
+ "drop": 1.567,
+ "music_trim": 1.9555,
+ "hits": [
+  {
+   "t": 0.0,
+   "label": "map lands",
+   "lib": [
+    "impact",
+    -8,
+    "hero"
+   ],
+   "synth": [
+    "whoosh",
+    {
+     "gain": 0.25,
+     "from": 3000,
+     "to": 300
+    }
+   ]
+  },
+  {
+   "t": 0.13,
+   "label": "AZ lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.176,
+   "label": "MT lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.222,
+   "label": "TX lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.267,
+   "label": "MO lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.313,
+   "label": "IL lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.359,
+   "label": "MI lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.405,
+   "label": "OH lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.45,
+   "label": "SC lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.496,
+   "label": "VA lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.542,
+   "label": "PA lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.588,
+   "label": "MD lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.62,
+   "label": "headline 2",
+   "lib": [
+    "whoosh",
+    -16,
+    "fx"
+   ],
+   "synth": [
+    "click",
+    {
+     "gain": 0.2
+    }
+   ]
+  },
+  {
+   "t": 0.633,
+   "label": "NY lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.679,
+   "label": "NJ lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.725,
+   "label": "ME lights",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 0.976,
+   "label": "map payoff",
+   "lib": [
+    "impact",
+    -10,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.4
+    }
+   ]
+  },
+  {
+   "t": 1.567,
+   "label": "cut 1",
+   "lib": [
+    "whoosh_hard",
+    -7,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.5,
+     "len": 0.5
+    }
+   ]
+  },
+  {
+   "t": 1.567,
+   "label": "drop",
+   "lib": [
+    "impact",
+    -6,
+    "hero"
+   ],
+   "synth": [
+    "riser",
+    {
+     "gain": 0.22,
+     "len": 1.2
+    }
+   ]
+  },
+  {
+   "t": 1.617,
+   "label": "count 0",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 1.717,
+   "label": "count 1",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 1.817,
+   "label": "count 2",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 1.917,
+   "label": "count 3",
+   "lib": [
+    "tick",
+    -18,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 2.037,
+   "label": "14 lands",
+   "lib": [
+    "stamp",
+    -6,
+    "hero"
+   ],
+   "synth": [
+    "thud",
+    {
+     "gain": 0.35
+    }
+   ]
+  },
+  {
+   "t": 2.398,
+   "label": "network",
+   "lib": [
+    "swipe",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 2.625,
+   "label": "one team",
+   "lib": [
+    "pop",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.2,
+     "pitch": "D6"
+    }
+   ]
+  },
+  {
+   "t": 3.317,
+   "label": "cut 2",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 3.367,
+   "label": "tile AUTO",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "C6"
+    }
+   ]
+  },
+  {
+   "t": 3.773,
+   "label": "tile TRUCKING",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "D6"
+    }
+   ]
+  },
+  {
+   "t": 4.215,
+   "label": "tile BUSINESS",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "E6"
+    }
+   ]
+  },
+  {
+   "t": 4.621,
+   "label": "tile HOME",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "G6"
+    }
+   ]
+  },
+  {
+   "t": 4.923,
+   "label": "tile UMBRELLA",
+   "lib": [
+    "pop",
+    -11,
+    "fx"
+   ],
+   "synth": [
+    "blip",
+    {
+     "gain": 0.16,
+     "pitch": "A6"
+    }
+   ]
+  },
+  {
+   "t": 5.817,
+   "label": "cut 3",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 6.092,
+   "label": "logo in",
+   "lib": [
+    "pop",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 6.565,
+   "label": "doc sent",
+   "lib": [
+    "swoosh_up",
+    -8,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 6.925,
+   "label": "received",
+   "lib": [
+    "chime",
+    -15,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.16,
+     "pitch": "E6"
+    }
+   ]
+  },
+  {
+   "t": 7.567,
+   "label": "cut 4",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 7.9,
+   "label": "scan",
+   "lib": [
+    "swipe",
+    -14,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.2,
+   "label": "check 1",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.44,
+   "label": "check 2",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 8.68,
+   "label": "check 3",
+   "lib": [
+    "tick",
+    -13,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 9.362,
+   "label": "save tag",
+   "lib": [
+    "impact",
+    -11,
+    "hero"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.22,
+     "pitch": "A6"
+    }
+   ]
+  },
+  {
+   "t": 10.317,
+   "label": "cut 5",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 10.677,
+   "label": "month 1",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.811,
+   "label": "month 2",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 10.945,
+   "label": "month 3",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.08,
+   "label": "month 4",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.214,
+   "label": "month 5",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.348,
+   "label": "month 6",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.482,
+   "label": "month 7",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.616,
+   "label": "month 8",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.75,
+   "label": "month 9",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 11.885,
+   "label": "month 10",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 12.019,
+   "label": "month 11",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 12.153,
+   "label": "month 12",
+   "lib": [
+    "tick",
+    -19,
+    "fx"
+   ],
+   "synth": null
+  },
+  {
+   "t": 12.233,
+   "label": "old rate lock",
+   "lib": [
+    "impact",
+    -9,
+    "hero"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.4,
+     "len": 0.45
+    }
+   ]
+  },
+  {
+   "t": 13.066,
+   "label": "cut 6",
+   "lib": [
+    "whoosh_hard",
+    -10,
+    "fx"
+   ],
+   "synth": [
+    "sub",
+    {
+     "gain": 0.3,
+     "len": 0.3
+    }
+   ]
+  },
+  {
+   "t": 13.371,
+   "label": "GET A FREE QUOTE",
+   "lib": [
+    "pop",
+    -8,
+    "fx"
+   ],
+   "synth": [
+    "bell",
+    {
+     "gain": 0.2,
+     "pitch": "D6"
+    }
+   ]
+  },
+  {
+   "t": 14.088,
+   "label": "free",
+   "lib": [
+    "pop",
+    -15,
+    "fx"
+   ],
+   "synth": null
+  }
+ ]
+}
