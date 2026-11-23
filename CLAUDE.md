@@ -6,7 +6,7 @@ Read `weeks/` (newest first) before planning anything: it holds what shipped, th
 
 ## The business (facts you may use, nothing else)
 - The Experts Agency, independent insurance agency, Staten Island, NY. Phone (929) 675-2948. Site theexpertsagency.com. Instagram @exprts.agency.
-- Licensed in 12 states: AZ, IL, MD, MO, MT, NJ, NY, OH, PA, SC, TX, VA. Check `weeks/` for newer states before saying a number.
+- Licensed in 14 states: AZ, IL, MD, ME, MI, MO, MT, NJ, NY, OH, PA, SC, TX, VA (Maine and Michigan added Nov 16). Map shapes for all 14: `brand/us-map-licensed.json` (`us-map-12-states.json` is the old W47 set). Check `weeks/` for newer states before saying a number.
 - Lines to advertise: commercial trucking, commercial auto, auto, motorcycle, general liability, personal and commercial umbrella, homeowners, business insurance, workers comp. Health insurance is not offered.
 - Track record: 5+ years and $20M+ in policies bound, **always stated as the team's combined record**.
 - Leads go to a Meta Instant Form ("Get Quote" button). Every ad runs under Meta's Financial products and services special ad category.
